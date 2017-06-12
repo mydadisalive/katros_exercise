@@ -113,6 +113,11 @@ def check_args(args):
 	except ValueError:
 		print(args[3] + "is not an integer")
 
+def signal_handler(signal, frame):
+        print('interrupted by user')
+        sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
+
 # main
 if __name__ == '__main__':
 	# check vars

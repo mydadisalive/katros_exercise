@@ -3,10 +3,11 @@
 import sys
 import os
 import time
+import signal
 from random import randint
 
 MAX_SLEEP = 30 		# max time in seconds for job to finish
-SUCCESS_RATE = 80
+SUCCESS_RATE = 80	# success rate of a job to successfully finish (percentage)
 EXIT_SUCCESS = 0
 EXIT_ERROR = 1 
 
@@ -47,6 +48,11 @@ def CheckArgs(args):
 	if len(sys.argv) != 3:
 		print "CalcID expects two arguments, a directory and a job id"
 		sys.exit(1)
+
+def signal_handler(signal, frame):
+        print('interrupted by user')
+        sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
 	
 # main program
 if __name__ == '__main__':
